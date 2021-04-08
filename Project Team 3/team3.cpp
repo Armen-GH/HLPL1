@@ -24,14 +24,12 @@ int main()
         cout << "There are " << sum_total << " pieces left. Now, " << player[n] << " please Choose how many would you like to flip (1-3)：";
         cin >> select;
 
-        // A code that ensures the user only enters numeric values
-        if (!(cin >> select)) {
+        // A code to ditch any non-int input the user provides!
+        while(!(cin)){
             cout << "You entered an invalid character, please enter a DIGIT between 1 and 3: ";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        } else {
-            continue;
-        }  
+        }
 
         // A code that ensures the nummeric values entered are in between 1 and 3
         if (select > 3 || select < 1)
@@ -72,4 +70,5 @@ int main()
     }
     cout << player[n] << " is winner! " << endl;
     system("pause");
+    return 0;
 }
