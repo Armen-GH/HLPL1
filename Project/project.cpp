@@ -68,8 +68,13 @@ int main()
             exit(0);
         } else if(inf == 'r')
         {
-            cout << "Here we go again!";
+            cout << "\n" << "Here we go again!" << endl;
             fill_n(coins, 10, 'H');
+            for(i=0;i<10;i++)
+            {
+                cout << coins[i] << " ";
+            }
+            cout << "\n";
             n = 0;
         } else if(inf == 'i')
         {
