@@ -52,7 +52,13 @@ int main()
         }
         for(i=0;i<flipNum;i++)
         {
-            coins[in[i]]='T';
+            //coins[in[i]]='T';
+            if(coins[in[i]]=='T')
+            {
+                coins[in[i]]='H';
+            } else {
+                coins[in[i]]='T';
+            }
         }
         cout << "\n" << "Here are the coins at the end of this round: " << endl;
         for(i=0;i<10;i++)
