@@ -49,6 +49,7 @@ int main()
                 a-=1;
                 in.push_back(a);
             }
+            sort(in.begin(),in.end());
         }
         for(i=0;i<flipNum;i++)
         {
