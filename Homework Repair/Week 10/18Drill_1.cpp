@@ -22,6 +22,7 @@ int main()
     }
     f(aa, size); //4.c
 }
+
 void f(int a[], int n)
 {
     int la[10]; //3.a
