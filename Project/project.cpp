@@ -103,6 +103,10 @@ int main()
         
         }
     n++;
+    if(n>1)
+    {
+        n=0;
+    };
     cout << "Congrats Player " << player[n] << ", You nailed it!";
 }
 bool check(char array[], int n)
