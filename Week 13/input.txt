@@ -1,0 +1,10 @@
+name 1 4.5
+hello 2 7.4
+bye 6 9.6
+morning 10 6.9
+car 19 3.56
+see 12 12.2
+eye 91 9.12
+can 19 1.82
+easy 22 4.12
+grade 89 5.5
