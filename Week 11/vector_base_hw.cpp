@@ -6,6 +6,7 @@ struct vector_base {
     T* elem; 				                                   
     int sz; 				                                    
     int space;			                                      
+    vector_base(){}; //constructor
     vector_base(const A& a, int n)                      
     : alloc{a}, elem{alloc.allocate(n)}, sz{n}, space{n}{ }
     ~vector_base() { alloc.deallocate(elem,space); }
