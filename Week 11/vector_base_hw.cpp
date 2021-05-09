@@ -122,13 +122,25 @@ template<typename T, typename A> our_vector<T, A>& our_vector<T, A>::operator=(o
 	return *this; 			// return a self-reference
 }
 
-template<typename T, typename A> void our_vector<T,A>::reserve(int newalloc) {
+template<typename T, typename A> void our_vector<T, A>::reserve(int newalloc) {		
+	if (newalloc <= this->space) return; 							                
+	T* p = this->alloc.allocate(newalloc); 						                    
+	for (int i = 0; i < this->sz; ++i)
+		this->alloc.construct(&p[i], this->elem[i]);					            
+	for (int i = 0; i < this->sz; ++i) 							                   
+		this->alloc.destroy(&this->elem[i]);
+	this->alloc.deallocate(this->elem, this->space);
+	this->elem = p;
+	this->space = newalloc;
+}
+
+template<typename T, typename A> void our_vector<T,A>::new_reserve(int newalloc) {
     if (newalloc <= this->space) return;
     vector_base<T,A> b(this->alloc,newalloc);
     uninitialized_copy(b.elem, &b.elem[this->sz], this->elem);
     for(int i=0; i<this->sz; ++i)
         this->alloc.destroy(&this->elem[i]);
-    swap<vector_base<T,A>>(*this,b);		
+    swap<vector_base<T,A>>(*this,b);
 }
 
 //following reserve template from slide 44
