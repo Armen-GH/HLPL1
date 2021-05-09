@@ -12,7 +12,7 @@ struct vector_base {
 };
 
 template<typename T, typename A = allocator<T>>
-class our_vector : private vector_base<T,A> {
+class our_vector : vector_base<T,A> {
 
 public:
 
@@ -28,11 +28,9 @@ public:
 
 	our_vector(const our_vector<T, A>& vec);					//Copy constructor
 
-	our_vector<T, A>& operator=(const our_vector<T, A>& vec);			//Copy Assignment
-
-	our_vector(our_vector<T, A>&& vec);						//Move Constructor
-
-	our_vector<T, A>& operator=(our_vector<T, A>&& vec);				//Move Assignment
+	our_vector<T, A>& operator=(const our_vector<T, A>& vec);
+        our_vector(our_vector<T, A>&& vec);						    //Move Constructor
+	    our_vector<T, A>& operator=(our_vector<T, A>&& vec);			//Copy Assignment
 
 	~our_vector() {									//Destructor
 		for (int i = 0; i < this->sz; ++i) 						
@@ -40,8 +38,20 @@ public:
 		this->alloc.deallocate(this->elem, this->space);
 	}
 
-	T& operator[](int n) { return this->elem[n]; }					//For non-const vectors
+	T& operator[](int n) { return this->elem[n]; }				
+	    int size() const { return this->sz; };
+	    void print();
+	    void reserve(int newalloc);					
 
+    void new_reserve(int newalloc);                              //---------------NEW ADDED FOR TESTING---------
+	    int capacity() const { return this->space; }
+	    void resize(int newsize, T val = T());
+	    void push_back(T& val);
+	    T& at(int n) {
+		    if (n < 0 || this->sz < n)
+			    throw std::out_of_range("Out of range!");
+		    return this->elem[n];
+	}
 	int size() const { return this->sz; };
 
 	void print();
@@ -91,7 +101,7 @@ template<typename T, typename A> our_vector<T, A>& our_vector<T, A>::operator=(c
 	return *this; 									// return a self-reference
 }
 
-template<typename T, typename A> our_vector<T,A>::our_vector(our_vector<T, A>&& vec) : sz{ vec.sz }, elem{ vec.elem }, space{ vec.space } {		//Move Constructore
+template<typename T, typename A> our_vector<T,A>::our_vector(our_vector<T, A>&& vec) {		//Move Constructore
 	this->sz = vec.sz;
     this->elem = vec.elem;
     this->space =vec.space;
@@ -112,12 +122,12 @@ template<typename T, typename A> our_vector<T, A>& our_vector<T, A>::operator=(o
 }
 
 template<typename T, typename A> void our_vector<T,A>::reserve(int newalloc) {
-    if (newalloc<=this–>space) return; 			// never decrease allocation
-    vector_base<T,A> b(this–>alloc,newalloc); 			// allocate new space
-    uninitialized_copy(b.elem,&b.elem[this–>sz],this–>elem); 	// copy
-    for (int i=0; i<this–>sz; ++i)
-    this–>alloc.destroy(&this–>elem[i]); 			// destroy old
-    swap<vector_base<T,A>>(*this,b); 			// swap representations
+    if (newalloc <= this->space) return;
+    vector_base<T,A> b(this->alloc,newalloc);
+    uninitialized_copy(b.elem, &b.elem[this->sz], this->elem);
+    for(int i=0; i<this->sz; ++i)
+        this->alloc.destroy(&this->elem[i]);
+    swap<vector_base<T,A>>(*this,b);		
 }
 
 //following reserve template from slide 44
