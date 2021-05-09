@@ -43,8 +43,7 @@ public:
 	    int size() const { return this->sz; };
 	    void print();
 	    void reserve(int newalloc);					
-
-    void new_reserve(int newalloc);                              //---------------NEW ADDED FOR TESTING---------
+    	void new_reserve(int newalloc);                              //---------------NEW ADDED FOR TESTING---------
 	    int capacity() const { return this->space; }
 	    void resize(int newsize, T val = T());
 	    void push_back(T& val);
