@@ -50,7 +50,9 @@ public:
 	    void push_back(T& val);
 	    T& at(int n) {
 		    if (n < 0 || this->sz < n)
-			    throw std::out_of_range("Out of range!");
+			    {
+                    throw std::out_of_range("Out of range!");
+                }
 		    return this->elem[n];
 	}
 	int size() const { return this->sz; };
