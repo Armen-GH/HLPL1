@@ -18,11 +18,7 @@ class our_vector : vector_base<T,A> {
 
 public:
 
-	our_vector() {                                              //Default constructor
-        this->sz = 0;
-        this->elem = nullptr;
-        this->space = 0;
-    } 
+	our_vector() : vector_base<T, A>(){} 
 
     explicit our_vector(size_t s) { 	                        //Normal Constructor
         vector_base<T,A> b(this->alloc,s);
@@ -34,11 +30,7 @@ public:
 			this->alloc.construct(p, T());
 	}
 
-    ~our_vector() {									             //Destructor
-		for (int i = 0; i < this->sz; ++i) 						
-			this->alloc.destroy(&this->elem[i]);
-		this->alloc.deallocate(this->elem, this->space);
-	}
+    ~our_vector() {};
 
     our_vector(const our_vector<T, A>& vec);					//Copy constructor
     our_vector<T, A>& operator=(const our_vector<T, A>& vec);	//Copy Assignment
