@@ -1,6 +1,7 @@
 #include "std_lib_facilities.h"
 
 void print_array(ostream& os, int* a, int n);
+void print_vector(ostream& os, vector<int> v);
 
 int main()
 {
@@ -25,7 +26,7 @@ int main()
     p2 = p3;
     //8
     cout << "p1 = " << p1 << ", it points to = " << *p1 << endl;
-    cout << "p2 = " << p2 << ", it points to = " << *p2 << endl;
+    cout << "p2 = " << p2 << ", it points to = " << *p2 << "\n" << endl;
     //9
     delete[] arr;
     //10
@@ -42,21 +43,26 @@ int main()
     {
         p2[i] = p1[i]; 
     }
+    cout << "Array arr1 printed from arr2 is: " << endl;
+    print_array(cout, arr2, 10);
+    cout << "\n";
+
     delete[] arr1;
     delete[] arr2;
     //12
-    vector<int> v;
-    vector<int>* vp = &v;
+    vector<int>v (10);
     for(int i=0;i<10;i++)
     {
         v[i] = (i + 1) * 2;
     }
-    vector<int> v1;
-    vector<int>* vp1 = &v1;
+
+    vector<int> v1 (10);
     for(int i=0;i<10;i++)
     {
-        vp1[i] = vp[i];
+        v1[i] = v[i];
     }
+    cout << "Vector v1 printed from v2 is: " << endl;
+    print_vector(cout, v1);
 }
 
 void print_array(ostream& os, int* a, int n)
@@ -66,4 +72,12 @@ void print_array(ostream& os, int* a, int n)
         os << i << " = " << a[i] << "." << endl;
     }
     cout << endl;
+}
+
+void print_vector(ostream& os, vector<int> v)
+{
+    for(int i=0;i<v.size();i++)
+    {
+        os << i << " - " << v[i] << "." << endl;
+    }
 }
