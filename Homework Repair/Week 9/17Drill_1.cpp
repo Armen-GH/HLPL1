@@ -65,24 +65,24 @@ int main()
     for(int i=0;i<11;i++)
     {
         e = i + 100;
-        vec.push_back(e);
+        vec1.push_back(e);
     }
-    print_vector(cout, vec);
+    print_vector(cout, vec1);
 
-    vector<int> vec;
+    vector<int> vec2;
     for(int i=0;i<20;i++)
     {
         e = i + 100;
-        vec.push_back(e);
+        vec2.push_back(e);
     }
-    print_vector(cout, vec);
+    print_vector(cout, vec2);
 }
 
 void print_array10(ostream& os, int* a)
 {
     for(int i=0;i<10;i++) 
     {
-        os << i << " = " << a[i] << "." << endl;
+        os << [i] << " = " << a[i] << "." << endl;
     }
     cout << endl;
 }
@@ -100,7 +100,6 @@ void print_vector(ostream& os, vector<int> v)
 {
     for(int i=0;i<v.size();i++)
     {
-        os << i << " - ";
+        os << i << " - " << v[i] << "." << endl;
     }
-    cout << endl;
 }
