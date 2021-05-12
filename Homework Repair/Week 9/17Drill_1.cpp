@@ -50,6 +50,7 @@ int main()
         arr3[i] = i + 100;
     }
     print_array(cout, arr3, 20);
+    cout << "\n";
     delete[] arr3; //9
 
     //10
@@ -60,6 +61,7 @@ int main()
         vec.push_back(e);
     }
     print_vector(cout, vec);
+    cout << "\n";
 
     vector<int> vec1;
     for(int i=0;i<11;i++)
@@ -68,6 +70,7 @@ int main()
         vec1.push_back(e);
     }
     print_vector(cout, vec1);
+    cout << "\n";
 
     vector<int> vec2;
     for(int i=0;i<20;i++)
@@ -82,7 +85,7 @@ void print_array10(ostream& os, int* a)
 {
     for(int i=0;i<10;i++) 
     {
-        os << [i] << " = " << a[i] << "." << endl;
+        os << i << " = " << a[i] << "." << endl;
     }
     cout << endl;
 }
